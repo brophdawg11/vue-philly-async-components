@@ -1,31 +1,22 @@
 <template>
     <div id="app">
-      <h1>Vue Async Components Demo</h1>
+        <h1>Vue Async Components Demo</h1>
 
-      <div>
-          <img src="https://via.placeholder.com/600x200.png?text=Lede%20Image" />
-      </div>
+        <button @click="toggleDropdown">
+            Click to toggle the dropdown content
+        </button>
 
-      <button @click="toggleDropdown">
-          Click to toggle the dropdown content
-      </button>
-      <DropdownContent v-if="showDropdown" />
-
+        <DropdownContent v-if="showDropdown" />
     </div>
 </template>
 
 <script>
-import ErrorMessage from './ErrorMessage.vue';
-import LoadingSpinner from './LoadingSpinner.vue';
+import DropdownContent from './DropdownContent.vue';
 
 export default {
     name: 'app',
     components: {
-        DropdownContent: () => ({
-            component: import('./DropdownContent.vue'),
-            loading: LoadingSpinner,
-            error: ErrorMessage,
-        }),
+        DropdownContent,
     },
     data() {
         return {
