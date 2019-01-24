@@ -11,12 +11,18 @@
 </template>
 
 <script>
-import DropdownContent from './DropdownContent.vue';
+import LoadingSpinner from './LoadingSpinner.vue';
+import ErrorMessage from './ErrorMessage.vue';
 
 export default {
     name: 'app',
     components: {
-        DropdownContent,
+        DropdownContent: () => ({
+            component: import('./DropdownContent.vue'),
+            loading: LoadingSpinner,
+            error: ErrorMessage,
+            timeout: 3000,
+        }),
     },
     data() {
         return {
