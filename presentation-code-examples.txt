@@ -1,0 +1,40 @@
+export default {
+    components: {
+        MyFactoryComponent: (resolve, reject) => {
+            ...
+            resolve(MyFactoryComponent);
+        },
+        MyPromiseComponent: () => new Promise(resolve, reject) {
+            ...
+            resolve(MyPromiseComponent);
+        },
+    },
+}
+
+
+
+import MyStaticImport from './my-static-import'
+
+import('./my-dynamic-import').then(MyDynamicImport => {
+    ...
+});
+
+
+
+<template>
+    <div>
+        <MyDynamicComponent v-if="showDynamicComponent" />
+    </div>
+</template>
+
+<script>
+export default {
+    components: {
+        MyDynamicComponent: () => import('./MyDynamicComponent.vue'),
+    }
+}
+</script>
+
+
+
+
