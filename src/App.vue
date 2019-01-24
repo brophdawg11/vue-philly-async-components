@@ -2,32 +2,30 @@
     <div id="app">
       <h1>Vue Async Components Demo</h1>
 
-      <img src="https://via.placeholder.com/600x200.png?text=Lede%20Image" />
-      <img src="https://via.placeholder.com/600x200.png?text=Lede%20Image" />
-      <img src="https://via.placeholder.com/600x200.png?text=Lede%20Image" />
+      <div>
+          <img src="https://via.placeholder.com/600x200.png?text=Lede%20Image" />
+      </div>
 
       <button @click="toggleDropdown">
           Click to toggle the dropdown content
       </button>
       <DropdownContent v-if="showDropdown" />
 
-      <ImageContent1 />
-
-      <ImageContent2 />
     </div>
 </template>
 
 <script>
-import DropdownContent from './DropdownContent.vue';
-import ImageContent1 from './ImageContent1.vue';
-import ImageContent2 from './ImageContent2.vue';
+import ErrorMessage from './ErrorMessage.vue';
+import LoadingSpinner from './LoadingSpinner.vue';
 
 export default {
     name: 'app',
     components: {
-        DropdownContent,
-        ImageContent1,
-        ImageContent2,
+        DropdownContent: () => ({
+            component: import('./DropdownContent.vue'),
+            loading: LoadingSpinner,
+            error: ErrorMessage,
+        }),
     },
     data() {
         return {
@@ -42,18 +40,22 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+    margin-bottom: 300px;
+}
+
+div {
+    width: 100;
+    padding: 20px;
 }
 
 img {
     display: block;
-    max-width: 100%;
-    margin: auto;
-    padding: 20px;
+    width: 100%;
 }
 </style>
